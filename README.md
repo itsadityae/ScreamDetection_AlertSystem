@@ -1,60 +1,79 @@
-📢 Scream Detection and Alert System
-A real-time Android application that detects human screams using a CNN-based machine learning model and instantly sends emergency alerts with precise location details. Built for personal safety and rapid response in noisy, real-world environments.
+🚨 Scream Detection and Alert System
+An AI-powered Android app that detects human screams in real-time and sends emergency alerts with location info to predefined contacts. Built using CNN, MFCC features, and Twilio for enhanced personal safety.
 
-🚀 Features
-🎙️ Scream Detection using a CNN trained on MFCC audio features
+📱 Key Features
+🎤 Real-time scream detection using a trained CNN model
 
-📈 High Accuracy:
+📍 Sends emergency alerts with location via Twilio & GPS
 
-Training Accuracy: 88.60%
+🎛️ Trained on noise-augmented public datasets (Kaggle, GitHub)
 
-Validation Accuracy: 83.98%
+📊 Achieved 84%+ validation accuracy, 85% precision
 
-Precision: 85.20%, Recall: 82.50%, F1-score: 83.80%
+📱 Fully built Android app with Java & Android Studio
 
-🌍 Location Tracking via Google Geolocation API or device GPS
+🔐 Focus on real-world usability, privacy, and reliability
 
-📲 Real-time Alerts to emergency contacts using Twilio API
+📊 Model Performance
+Metric	Value
+Training Accuracy	88.60%
+Validation Accuracy	83.98%
+Precision	85.20%
+Recall	82.50%
+F1-Score	83.80%
 
-📱 Android App built using Java & Android Studio
+🧪 How It Works
+📂 Audio samples are preprocessed (noise reduction + MFCCs)
 
-🔒 Privacy-focused with scope for secure data handling
+🧠 CNN model classifies audio as scream or non-scream
 
-🧪 Testing & Evaluation
-Trained on publicly available scream/non-scream datasets from Kaggle and GitHub
+📡 If scream is detected:
 
-Data augmented with real-world environmental noise
+Location is fetched via GPS/Geolocation API
 
-80:20 train-validation split
+Emergency SMS sent via Twilio API
 
-Audio features extracted using MFCC
+🛠 Tech Stack
+ML & Audio: TensorFlow, MFCC (Librosa), Python
 
-Training run for 50 epochs using Adam Optimizer with early stopping
+Backend: Twilio API, Google Geolocation API
 
-Evaluation metrics: Accuracy, Precision, Recall, and F1-score
+Mobile App: Java, Android Studio
 
-Visualizations of model accuracy/loss trends across epochs confirm strong generalization
+Deployment: Android device
 
-🛠️ Tech Stack
-Programming: Python, Java
+🚀 Getting Started
+Clone the repo
 
-Libraries & Tools: TensorFlow, Librosa, Android Studio, Twilio API, Google Geolocation API
+bash
+Copy
+Edit
+git clone https://github.com/your-username/scream-detection-alert.git
+Install Python dependencies
 
-Platform: Android (Mobile Application)
+Train the model or use the pre-trained model
 
-📱 Application Preview
-📎 Live Demo Website (ScreamGuard)
+Open the Android project in Android Studio
 
-🔮 Future Scope
-🔋 Battery-efficient continuous audio monitoring
+Add your Twilio API and Google Geolocation API keys
 
-🔊 Advanced noise filtering (e.g., deep learning-based denoisers)
+Build and run on a physical device
 
-⌚ Smartwatch and wearable integration
+🌱 Future Enhancements
+🔋 Battery optimization for background audio monitoring
 
-🔐 End-to-end encryption for location/audio data
+🔊 Advanced noise filtering with deep learning
 
-🌐 Multi-language scream recognition
+⌚ Integration with smartwatches and wearables
 
-🆘 Direct integration with emergency services
+🌐 Multilingual & regional scream detection
 
+🆘 Direct alert integration with emergency services
+
+🔗 Live Demo
+🌐 ScreamGuard Website
+
+👤 Author
+Aditya
+Computer Science Student | Developer | Entrepreneur
+🔗 LinkedIn | Portfolio
