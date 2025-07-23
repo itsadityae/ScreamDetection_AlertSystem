@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/black"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scream Detection App"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Emergency Contacts"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="#333333"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contact Name"
+                android:textColorHint="#888888"
+                android:textColor="@android:color/white"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/white" />
+
+            <EditText
+                android:id="@+id/phoneEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:textColorHint="#888888"
+                android:textColor="@android:color/white"
+                android:inputType="phone"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/white" />
+
+            <EditText
+                android:id="@+id/relationshipEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Relationship (optional)"
+                android:textColorHint="#888888"
+                android:textColor="@android:color/white"
+                android:inputType="text"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@android:color/white" />
+
+            <Button
+                android:id="@+id/addContactButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Contact"
+                android:backgroundTint="#9370DB"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Empty space for contacts list if you want to add that later -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contactsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- New Test Button -->
+    <Button
+        android:id="@+id/testSmsButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:backgroundTint="#FF9800"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/safetyModeOnButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Safety Mode On"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/safetyModeOffButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Safety Mode Off"
+            android:backgroundTint="#F44336"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"
+            android:padding="16dp"
+            android:enabled="false" />
+    </LinearLayout>
+
+</LinearLayout>

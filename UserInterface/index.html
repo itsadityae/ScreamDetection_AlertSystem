@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreamGuard - Advanced Safety Alert System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5e17eb;
+            --secondary: #ff4081;
+            --dark: #333;
+            --light: #f9f9f9;
+            --success: #42b883;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5e17eb 0%, #8448ff 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/600') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, #8448ff 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(94, 23, 235, 0.4);
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(94, 23, 235, 0.6);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .how-it-works {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: var(--light);
+        }
+
+        .how-it-works h2 {
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .team {
+            padding: 4rem 2rem;
+            background-color: white;
+            text-align: center;
+        }
+
+        .team h2 {
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .team-member {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        .testimonials {
+            padding: 4rem 2rem;
+            background-color: var(--light);
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .testimonial-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .testimonial-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial {
+            flex: 0 0 auto;
+            width: 80%;
+            max-width: 500px;
+            scroll-snap-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .stars {
+            color: gold;
+            margin-bottom: 1rem;
+        }
+
+        .faq {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: white;
+        }
+
+        .faq-active .faq-answer {
+            padding: 1.5rem;
+            max-height: 1000px;
+        }
+
+        .download-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #5e17eb 0%, #8448ff 100%);
+            color: white;
+        }
+
+        .download-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .download-section p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .download-section .download-btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        footer {
+            padding: 2rem;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 250px;
+            height: 500px;
+            margin: 2rem auto;
+            border-radius: 30px;
+            background-color: black;
+            padding: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .notification {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 64, 129, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            animation: notification 5s infinite;
+            box-shadow: 0 2px 10px rgba(255, 64, 129, 0.4);
+            z-index: 10;
+        }
+
+        @keyframes notification {
+            0%, 100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+            10%, 90% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0px);
+            }
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .counter-label {
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .testimonial {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>ScreamGuard</span>
+        </div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#team">Our Team</a>
+            <a href="#faq">FAQ</a>
+            <a href="#download">Download</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Your Personal Safety Companion</h1>
+        <p>ScreamGuard uses advanced AI to detect distress screams and instantly alerts your emergency contacts with your precise location.</p>
+        
+        <div class="phone-mockup">
+            <div class="screen">
+                <img src="appInterface.jpg" alt="App Interface">
+                <div class="notification">
+                    <i class="fas fa-exclamation-triangle"></i> Alert sent to emergency contacts!
+                </div>
+            </div>
+        </div>
+        
+        <a href="#download" class="download-btn">
+            <i class="fas fa-download"></i> Download Now
+        </a>
+        
+        <div class="counter-container">
+            <div class="counter">
+                <div class="counter-number" id="downloads-counter">5000+</div>
+                <div class="counter-label">Downloads</div>
+            </div>
+            <div class="counter">
+                <div class="counter-number" id="reviews-counter">4.8</div>
+                <div class="counter-label">User Rating</div>
+            </div>
+            <div class="counter">
+                <div class="counter-number" id="alerts-counter">200+</div>
+                <div class="counter-label">Alerts Sent</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-microphone-alt"></i>
+            </div>
+            <h3>Real-time Audio Analysis</h3>
+            <p>Our advanced CNN model accurately detects distress screams even in noisy environments, minimizing false alarms.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Precise Location Tracking</h3>
+            <p>Automatic GPS location retrieval ensures your emergency contacts know exactly where to find you.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h3>Instant SMS Alerts</h3>
+            <p>Sends immediate SMS notifications with your location to pre-selected emergency contacts when a scream is detected.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-battery-full"></i>
+            </div>
+            <h3>Battery Efficient</h3>
+            <p>Optimized algorithms ensure minimal battery consumption while maintaining constant protection.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3>Privacy Focused</h3>
+            <p>Your audio data is processed locally on your device, ensuring your privacy is always protected.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-sliders-h"></i>
+            </div>
+            <h3>Customizable Settings</h3>
+            <p>Adjust sensitivity levels and manage your emergency contact list with our user-friendly interface.</p>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <h2>How It Works</h2>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Install & Setup</h3>
+                <p>Download the app, grant necessary permissions, and add your emergency contacts.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Always Listening</h3>
+                <p>The app runs in the background, continuously monitoring for distress sounds.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Scream Detection</h3>
+                <p>When a scream is detected, our AI model instantly identifies it as a distress signal.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Alert Sent</h3>
+                <p>Emergency contacts receive an SMS with your precise location for immediate assistance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <h2>Meet Our Team</h2>
+        
+        <div class="team-members">
+            <div class="team-member">
+                <!-- <img src="/api/placeholder/120/120" alt="Eslavath Aditya"> -->
+                <h3>Eslavath Aditya</h3>
+                <p>UI22CS24</p>
+                <p>ML Model Development</p>
+            </div>
+            
+            <div class="team-member">
+                <!-- <img src="/api/placeholder/120/120" alt="Doddapneni Dhanush"> -->
+                <h3>Doddapneni Dhanush</h3>
+                <p>UI22CS21</p>
+                <p>Android App Integration</p>
+            </div>
+            
+            <div class="team-member">
+                <!-- <img src="/api/placeholder/120/120" alt="Kondeti Lara Praneeth"> -->
+                <h3>Kondeti Lara Praneeth</h3>
+                <p>UI22CS38</p>
+                <p>Audio Processing</p>
+            </div>
+            
+            <div class="team-member">
+                <!-- <img src="Images/JIbyMaad.jpg" alt="Ms. Jiby C"> -->
+                <h3>Ms. Jiby C</h3>
+                <p>Project Guide</p>
+                <p>Department of CS & Engineering</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Users Say</h2>
+        
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <img src="Images/Dharini.jpg" alt="User 1">
+                    <div>
+                        <h4>Priya Patel Bhaskarla</h4>
+                        <p>College Student</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p>"This app gives me peace of mind when walking home late from campus. It's like having a personal security guard in my pocket!"</p>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <img src="Images/Dulquer.jpg" alt="User 2">
+                    <div>
+                        <h4>Dulquer</h4>
+                        <p>Parent</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p>"I installed this on my teenage daughter's phone. The emergency alert feature is incredibly reassuring for both of us."</p>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <img src="Images/Tiana.jpg" alt="User 3">
+                    <div>
+                        <h4>Ananya Reddy</h4>
+                        <p>Working Professional</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p>"The accuracy of the scream detection is impressive. I tested it in various environments and it works flawlessly!"</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Does the app drain my battery? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>ScreamGuard is designed to be battery efficient. Our optimized algorithms ensure minimal power consumption while maintaining constant protection. In our tests, the app uses less than 5% of battery over an 8-hour period.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Is my data secure and private? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Absolutely! Your privacy is our priority. All audio processing happens locally on your device, and no audio recordings are stored or transmitted to our servers. Only location data is sent to your emergency contacts when an alert is triggered.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                How accurate is the scream detection? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Our CNN model has been trained on a diverse dataset of over 900 audio samples and has achieved over 95% accuracy in detecting distress screams. The system is designed to minimize false positives while ensuring that genuine distress calls are detected promptly.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I customize my emergency contacts? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, you can add multiple emergency contacts and prioritize them. You can also customize the alert message that will be sent to them. This feature allows you to ensure that the right people are notified in case of an emergency.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Will it work if my phone is in my pocket or bag? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, ScreamGuard is designed to detect screams even when your phone is in a pocket or bag. Our advanced audio processing techniques filter out background noise and focus on distress sound patterns for reliable detection in various conditions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="download-section" id="download">
+        <h2>Download ScreamGuard Today</h2>
+        <p>Join thousands of users who feel safer with ScreamGuard. Our innovative safety solution is just a download away.</p>
+        <a href="screamguard.apk" class="download-btn" download>
+            <i class="fas fa-download"></i> Download APK (v1.2.0)
+        </a>
+    </section>
+
+    <footer>
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>ScreamGuard</span>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#team">Our Team</a>
+            <a href="#faq">FAQ</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        
+        <p>&copy; 2025 ScreamGuard. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('faq-active');
+            });
+        });
+
+        // Animated counter functionality
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                if (element.id === 'reviews-counter') {
+                    element.textContent = (progress * (end - start) + start).toFixed(1);
+                } else {
+                    element.textContent = value + '+';
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Intersection Observer to trigger animations when elements are in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate counters when they come into view
+                    if (entry.target.querySelector('#downloads-counter')) {
+                        animateCounter(document.getElementById('downloads-counter'), 0, 5000, 2000);
+                        animateCounter(document.getElementById('reviews-counter'), 0, 4.8, 2000);
+                        animateCounter(document.getElementById('alerts-counter'), 0, 200, 2000);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe the counter container
+        observer.observe(document.querySelector('.counter-container'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Classification</title>
+</head>
+<body>
+    <h1>Upload an Audio File for Classification</h1>
+    <form id="audioForm" enctype="multipart/form-data">
+        <input type="file" id="file" name="file" accept=".wav">
+        <button type="submit">Classify</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById('audioForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('file', document.getElementById('file').files[0]);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.label) {
+                    document.getElementById('result').innerHTML = 
+                        `Prediction: ${data.label} (Confidence: ${data.confidence.toFixed(2)})`;
+                } else {
+                    document.getElementById('result').innerHTML = 
+                        `Error: ${data.error}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = "An error occurred!";
+            });
+        });
+    </script>
+</body>
+</html>
